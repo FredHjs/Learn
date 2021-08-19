@@ -17,6 +17,7 @@ int main(){
     //when we don't need modify the value which the iterator points to, we can declare the iterator to be const
     auto const_it{v1.cbegin()};
 
+    //can also use range for here
     while (const_it != v1.cend()){
         cout << *const_it << " ";
         ++const_it;
