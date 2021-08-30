@@ -2,7 +2,7 @@
 #ifndef CHAPTER6_H
 #define CHAPTER6_H
 
-//the functions used is defined in this header file
+//the functions used is declared in this header file
 int factorial(int value);
 
 unsigned int abs_val(int v);
