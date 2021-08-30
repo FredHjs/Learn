@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Chapter6.h"
 
 int factorial(int value){
     int result{1};
