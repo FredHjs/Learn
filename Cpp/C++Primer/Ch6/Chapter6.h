@@ -4,7 +4,6 @@
 
 //the functions used is declared in this header file
 int factorial(int value);
-
 unsigned int abs_val(int v);
 
 #endif
