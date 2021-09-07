@@ -1,5 +1,9 @@
+#ifndef PERSON_H
+#define PERSON_H
 #include <iostream>
+#include "Person.h"
 #include <string>
+
 using namespace std;
 struct Person{
     string Name;
@@ -10,13 +14,15 @@ struct Person{
     string get_address() const {return Address;}
 };
 
-istream& read(Person person, istream& is){
+istream& read(Person& person, istream& is){
     getline(is, person.Name);
     getline(is, person.Address);
     return is;
 }
 
-ostream& print(Person person, ostream& os){
+ostream& print(Person& person, ostream& os){
     os << person.Name << ": " << person.Address;
     return os;
 }
+
+#endif
