@@ -6,6 +6,9 @@
 
 using namespace std;
 struct Person{
+    Person(const string& name, const string& address)
+        :Name(name), Address(address){}
+
     string Name;
     string Address;
 
