@@ -4,21 +4,22 @@
 #include <stdexcept>
 #include <iostream>
 
-struct Sales_data{
-    Sales_data() = default;
-    Sales_data(const std::string &s): ISBN(s){}
-    Sales_data(const std::string &s, unsigned n, double p): 
-        ISBN(s), num_sold(n), revenue(p*n){}
-    Sales_data(std::istream &is);
+class Sales_data{
+    friend std::ostream& print(std::ostream& os, Sales_data sd);
+    public:
+        Sales_data() = default;
+        Sales_data(const std::string &s): ISBN(s){}
+        Sales_data(const std::string &s, unsigned n, double p): 
+            ISBN(s), num_sold(n), revenue(p*n){}
+        Sales_data(std::istream &is);
+        std::string isbn() const {return ISBN;}
+        Sales_data& combine(const Sales_data& rhs);
 
-    std::string ISBN;
-    int num_sold{0};
-    double unit_price{0.0};
-    double revenue{0.0};
-
-    std::string isbn() const {return ISBN;}
-    Sales_data& combine(const Sales_data& rhs);
-
+    private:
+        std::string ISBN;
+        int num_sold{0};
+        double unit_price{0.0};
+        double revenue{0.0};
 };
 
 Sales_data::Sales_data(std::istream &is){
@@ -35,6 +36,11 @@ Sales_data& Sales_data::combine(const Sales_data& rhs){
     this->revenue += rhs.revenue;
 
     return *this;
+}
+
+std::ostream& print(std::ostream& os, Sales_data sd){
+    os << sd.ISBN + " " << sd.num_sold + " " << sd.unit_price << " " << sd.revenue;
+    return os;
 }
 
 #endif
