@@ -14,6 +14,7 @@ class Sales_data{
         Sales_data(std::istream &is);
         std::string isbn() const {return ISBN;}
         Sales_data& combine(const Sales_data& rhs);
+        inline double avg_price() const {return revenue/num_sold;}
 
     private:
         std::string ISBN;
