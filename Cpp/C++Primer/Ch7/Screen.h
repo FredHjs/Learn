@@ -1,10 +1,23 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include <iostream>
+#include <vector>
 using namespace std;
+
+class Screen;
+class Window_mgr{
+    using ScreenIndex = vector<Screen>::size_type;
+
+    public:
+        void clear_screen(ScreenIndex);
+
+    private:
+        vector<Screen> Screens;
+};
 
 class Screen{
     using pos = string::size_type;
+    friend void Window_mgr::clear_screen(ScreenIndex);
 
     public: 
         Screen() = default;
@@ -33,6 +46,10 @@ class Screen{
         void do_display(ostream& os) const {os << content;}
 };
 
+void Window_mgr::clear_screen(ScreenIndex i){
+    Screen& s = Screens[i];
+    //s.content = 
+}
 inline char Screen::get(pos row, pos col) const {
     auto position = row * width + col;
     return content[position];
@@ -59,6 +76,6 @@ Screen& Screen::display(ostream& os){
 const Screen& Screen::display(ostream& os) const{
     do_display(os);
     return *this;
-} 
+}
 
 #endif
