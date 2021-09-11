@@ -7,10 +7,18 @@
 class Sales_data{
     friend std::ostream& print(std::ostream& os, Sales_data sd);
     public:
-        Sales_data() = default;
-        Sales_data(const std::string &s): ISBN(s){}
+    //when using delegating ctors, the compiler will first call the delegated ctor, then the calling ctor
         Sales_data(const std::string &s, unsigned n, double p): 
-            ISBN(s), num_sold(n), revenue(p*n){}
+            ISBN(s), num_sold(n), revenue(p*n){
+                std::cout << "ctor with 3 arguments is called" << std::endl;
+            }
+        
+        Sales_data(): Sales_data("", 0, 0.0){
+            std::cout << "the default ctor is called" << std::endl;
+        }
+        Sales_data(const std::string &s): Sales_data(s, 0, 0.0){
+            std::cout << "ctor with a string argument is called" << std::endl;
+        }
         Sales_data(std::istream &is);
         std::string isbn() const {return ISBN;}
         Sales_data& combine(const Sales_data& rhs);
@@ -23,9 +31,10 @@ class Sales_data{
         double revenue{0.0};
 };
 
-Sales_data::Sales_data(std::istream &is){
+inline Sales_data::Sales_data(std::istream &is): Sales_data(){
     is >> ISBN >> num_sold >> unit_price;
     revenue = num_sold * unit_price;
+    std::cout << "ctor with with an istream& argument is called" << std::endl;
 }
 
 Sales_data& Sales_data::combine(const Sales_data& rhs){
