@@ -10,7 +10,7 @@ class StrBlobPtr;
 class StrBlob{
     friend class StrBlobPtr;
     public:
-        StrBlob();
+        StrBlob(): data(make_shared<vector<string>>()){}
         StrBlob(initializer_list<string> li): data(make_shared<vector<string>>(li)){}
         vector<string>::size_type size() const {return data -> size();}
         void push_back(const string& s) const {data->push_back(s);}
@@ -45,13 +45,10 @@ void StrBlob::pop_back(){
 class StrBlobPtr{
     public:
         StrBlobPtr():curr(0){}
-        StrBlobPtr(StrBlob& strBlob, size_t sz = 0): wp(strBlob.data){
-            if (check("index out of range", sz))
-                curr = sz;
-        }
+        StrBlobPtr(StrBlob& strBlob, size_t sz = 0): wp(strBlob.data), curr(sz){}
         string& deref() const;
         StrBlobPtr& incr();
-        bool operator!=(StrBlobPtr& rhs){return this->curr != rhs.curr;}
+        bool operator!=(const StrBlobPtr& rhs) {return this->curr != rhs.curr;}
     private:
         shared_ptr<vector<string>> check(const string& msg, vector<string>::size_type index) const;
         vector<string>::size_type curr;
@@ -61,7 +58,7 @@ class StrBlobPtr{
 shared_ptr<vector<string>> StrBlobPtr::check(const string& msg, vector<string>::size_type index) const{
     auto shared_ptr = wp.lock();
     if (shared_ptr){
-        if (shared_ptr->size() <= index){
+        if (shared_ptr->size() > index){
             return shared_ptr;
         }else{
             throw out_of_range(msg);
@@ -83,5 +80,5 @@ StrBlobPtr& StrBlobPtr::incr(){
 }
 
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this, 0);}
-StrBlobPtr StrBlob::end() {return StrBlobPtr(*this, this->data->size());}
+StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, this->data->size()); return ret;}
 #endif
