@@ -28,4 +28,10 @@ int main(){
     for (char* i = pc34; i < (pc34 + s3.size() + s4.size()); ++i){
         cout << *i;
     }
+
+    delete[] pc12;
+    pc12 = nullptr;
+
+    delete[] pc34;
+    pc34 = nullptr;
 }
