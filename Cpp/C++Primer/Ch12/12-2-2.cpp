@@ -12,6 +12,7 @@ int main(){
     cin.clear();
 
     auto p = alloc.allocate(n);
+    
     cout << "enter the strings: ";
     string* q = p, s;
     while (cin >> s && q < p + n){
