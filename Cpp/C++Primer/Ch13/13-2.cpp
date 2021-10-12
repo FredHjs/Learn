@@ -18,8 +18,12 @@ class HasPtr{
 HasPtr::HasPtr(const HasPtr& orig): ps(new std::string(*(orig.ps))), i(orig.i){}
 
 HasPtr& HasPtr::operator=(const HasPtr& rhs){
-    *(this->ps) = *(rhs.ps);
+    //make sure that an instance can copy itself
+    std::string* newp = new std::string(*(rhs.ps));
+    delete this->ps;
+    ps = newp;
     this-> i = rhs.i;
+    return *this;
 }
 
 HasPtr::~HasPtr(){
