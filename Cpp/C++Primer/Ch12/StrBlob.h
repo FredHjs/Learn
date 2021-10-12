@@ -11,23 +11,48 @@ class StrBlob{
     friend class StrBlobPtr;
     public:
         StrBlob(): data(make_shared<vector<string>>()){}
+
         StrBlob(initializer_list<string> li): data(make_shared<vector<string>>(li)){}
+
+        StrBlob(const StrBlob& rhs): data(make_shared<vector<string>>(rhs.data)){}
+
+        StrBlob& operator=(const StrBlob&);
+
         vector<string>::size_type size() const {return data -> size();}
+
         void push_back(const string& s) const {data->push_back(s);}
+
         void pop_back();
+
         string& front() {return get_front();}
+
         string& back() {return get_back();}
+
         const string& front() const {return get_front();}
+
         const string& back() const {return get_back();}
+
         StrBlobPtr begin();
+
         StrBlobPtr end(); 
         
     private:
         shared_ptr<vector<string>> data;
+
         bool check(vector<string>::size_type, const string& msg) const;
+
         string& get_front() const {if (check(0, "no data stored!")) return data->front();}
+
         string& get_back() const {if (check(0, "no data stored!")) return data->back();}
 };
+
+StrBlob& StrBlob::operator=(const StrBlob& rhs){
+    auto new_data = make_shared<vector<string>>(*(rhs.data));
+
+    this->data.reset(new_data.get());
+
+    return *this;
+}
 
 bool StrBlob::check(vector<string>::size_type index, const string& msg) const {
     if (index >= data->size()){
@@ -80,5 +105,6 @@ StrBlobPtr& StrBlobPtr::incr(){
 }
 
 StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this, 0);}
+
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, this->data->size()); return ret;}
 #endif
