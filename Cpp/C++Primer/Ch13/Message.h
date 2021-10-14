@@ -8,14 +8,15 @@ class Folder;
 
 class Message{
     friend class Folder;
+    friend void swap(Message&, Message&);
 
     public:
         explicit Message(const string& s = ""): content(s){}
         Message(const Message&);
         Message& operator=(const Message&);
         ~Message();
-        void save(Folder&);
-        void remove(Folder&);
+        void save_in(Folder&);
+        void remove_from(Folder&);
 
     private:
         string content;
