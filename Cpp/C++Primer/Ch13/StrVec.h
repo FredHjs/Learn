@@ -33,9 +33,20 @@ class StrVec{
 
     private:
         static std::allocator<std::string> alloc;
+
         std::string* elements;
+
         std::string* first_free;
+
         std::string* cap;
+
+        std::pair<std::string*, std::string*> alloc_n_copy(std::string*, std::string*);
+
+        void alloc_n_move(std::size_t new_cap);
+
+        void check_cap_alloc(){if (first_free == cap) reallocate();}
+
+        void reallocate(){}
 };
 
 #endif
