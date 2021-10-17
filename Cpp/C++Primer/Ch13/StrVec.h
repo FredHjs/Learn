@@ -15,7 +15,7 @@ class StrVec{
 
         StrVec& operator=(const StrVec& rhs);
 
-        ~StrVec();
+        ~StrVec(){free();}
 
         void push_back(const std::string&);
 
@@ -46,7 +46,9 @@ class StrVec{
 
         void check_cap_alloc(){if (first_free == cap) reallocate();}
 
-        void reallocate(){}
+        void reallocate();
+
+        void free();
 };
 
 #endif
