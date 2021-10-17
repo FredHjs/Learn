@@ -41,7 +41,52 @@ void StrVec::push_back(const string& s){
     alloc.construct(first_free++, &s);
 }
 
-std::pair<std::string*, std::string*> StrVec::alloc_n_copy(string* beg, string* end){
+std::pair<std::string*, std::string*> StrVec::alloc_n_copy(const string* beg, const string* end){
     auto data = alloc.allocate(end - beg);
     return {data, std::uninitialized_copy(beg, end, data)};
+}
+
+StrVec::StrVec(const StrVec& rhs){
+    auto new_data = alloc_n_copy(rhs.elements, rhs.first_free);
+    elements = new_data.first;
+    first_free = new_data.second;
+    cap = first_free;
+}
+
+StrVec::StrVec(std::initializer_list<string> li){
+    auto new_data = alloc_n_copy(li.begin(), li.end());
+    elements = new_data.first;
+    first_free = new_data.second;
+    cap = first_free;
+}
+
+StrVec& StrVec::operator=(const StrVec& rhs){
+    auto new_data = alloc_n_copy(rhs.elements, rhs.first_free);
+    free();
+    elements = new_data.first;
+    first_free = new_data.second;
+    cap = first_free;
+}
+
+void StrVec::reserve(std::size_t n){
+    if (capacity() >= n){
+        return;
+    }else{
+        alloc_n_move(n);
+    }
+}
+
+void StrVec::resize(std::size_t n, const string& s){
+    if (size() < n){
+        if (capacity() < n){
+            reserve(n * 2);
+        }
+        for (auto i = size(); i != n; ++i){
+            alloc.construct(first_free++, s);
+        }
+    }else{
+        for (auto i = size(); i != n; --i){
+            alloc.destroy(--first_free);
+        }
+    }
 }

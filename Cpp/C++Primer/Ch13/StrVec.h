@@ -29,7 +29,7 @@ class StrVec{
 
         void reserve(std::size_t);
 
-        void resize(std::size_t);
+        void resize(std::size_t, const string&);
 
     private:
         static std::allocator<std::string> alloc;
@@ -40,7 +40,7 @@ class StrVec{
 
         std::string* cap;
 
-        std::pair<std::string*, std::string*> alloc_n_copy(std::string*, std::string*);
+        std::pair<std::string*, std::string*> alloc_n_copy(const std::string*, const std::string*);
 
         void alloc_n_move(std::size_t new_cap);
 
