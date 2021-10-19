@@ -6,6 +6,7 @@ class String{
     public:
         String() = default;
         String(const char cp[]);
+        String(const String&);
         String(String&&) noexcept;
         String& operator=(String&&) noexcept;
 

@@ -32,6 +32,12 @@ String& String::operator=(String&& rhs){
     return *this;
 }
 
+String::String(const String& rhs){
+    begin = alloc.allocate(rhs.end - rhs.begin);
+
+    end = std::uninitialized_copy(rhs.begin, rhs.end, begin);
+}
+
 void String::free(){
     auto end_it = end;
     while (end_it != begin){
