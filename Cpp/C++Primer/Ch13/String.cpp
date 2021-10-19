@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <iostream>
 
+//static member variables need to be declared again when compiling seperately
+std::allocator<char> String::alloc;
+
 String::String(const char cp[]){
     std::cout << "copy ctor called" << std::endl;
     auto char_end = cp;
