@@ -1,9 +1,11 @@
+#ifndef STRING_H
+#define STRING_H
 #include <memory>
 
 class String{
     public:
         String() = default;
-        String(const char* cp[]);
+        String(const char cp[]);
         String(String&&) noexcept;
         String& operator=(String&&) noexcept;
 
@@ -13,3 +15,5 @@ class String{
         char* end;
         void free();
 };
+
+#endif

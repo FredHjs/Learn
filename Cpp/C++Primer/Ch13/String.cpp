@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
-String::String(const char* cp[]){
+String::String(const char cp[]){
     std::cout << "copy ctor called" << std::endl;
     auto char_end = cp;
     while(*char_end != '\0'){
