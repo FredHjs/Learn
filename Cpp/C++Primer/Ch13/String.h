@@ -4,9 +4,12 @@ class String{
     public:
         String() = default;
         String(const char* cp[]);
+        String(String&&) noexcept;
+        String& operator=(String&&) noexcept;
 
     private:
-        std::allocator<char> alloc;
+        static std::allocator<char> alloc;
         char* begin;
         char* end;
+        void free();
 };
