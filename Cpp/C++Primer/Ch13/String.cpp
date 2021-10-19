@@ -16,12 +16,12 @@ String::String(const char cp[]){
     end = std::uninitialized_copy(cp, char_end, begin);
 }
 
-String::String(String&& s): begin(std::move(s.begin)), end(std::move(s.end)){
+String::String(String&& s) noexcept : begin(std::move(s.begin)), end(std::move(s.end)){
     s.begin = s.end = nullptr;
     std::cout << "move ctor called" << std::endl;
 }
 
-String& String::operator=(String&& rhs){
+String& String::operator=(String&& rhs) noexcept {
     if (this != &rhs){
         free();
         begin = std::move(rhs.begin);
