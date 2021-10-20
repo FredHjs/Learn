@@ -9,6 +9,7 @@ class String{
         String(const String&);
         String(String&&) noexcept;
         String& operator=(String&&) noexcept;
+        ~String(){free();}
 
     private:
         static std::allocator<char> alloc;
