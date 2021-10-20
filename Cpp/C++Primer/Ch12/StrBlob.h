@@ -22,6 +22,8 @@ class StrBlob{
 
         void push_back(const string& s) const {data->push_back(s);}
 
+        void push_back(string&& s) const {data->push_back(std::move(s));}
+
         void pop_back();
 
         string& front() {return get_front();}
