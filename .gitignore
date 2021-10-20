@@ -10,3 +10,6 @@
 .idea
 Chaojiying_Python
 *.exe
+*.i
+*.s
+*.o
