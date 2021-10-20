@@ -53,6 +53,10 @@ StrVec::StrVec(const StrVec& rhs){
     cap = first_free;
 }
 
+StrVec::StrVec(StrVec&& rhs) noexcept: elements(rhs.elements), first_free(rhs.first_free), cap(rhs.cap){
+    rhs.cap = rhs.first_free = rhs.elements = nullptr;
+}
+
 StrVec::StrVec(std::initializer_list<string> li){
     auto new_data = alloc_n_copy(li.begin(), li.end());
     elements = new_data.first;
@@ -89,4 +93,16 @@ void StrVec::resize(std::size_t n, const string& s){
             alloc.destroy(--first_free);
         }
     }
+}
+
+StrVec& StrVec::operator=(StrVec&& rhs){
+    if (this != &rhs){
+        this->free();
+        this->elements = rhs.elements;
+        this->first_free = rhs.first_free;
+        this->cap = rhs.cap;
+        rhs.cap = rhs.first_free = rhs.elements = nullptr;
+    }
+    
+    return *this;
 }

@@ -13,6 +13,10 @@ class StrVec{
 
         StrVec(const StrVec&);
 
+        StrVec(StrVec&&) noexcept;
+
+        StrVec& operator=(StrVec&&);
+
         StrVec& operator=(const StrVec& rhs);
 
         ~StrVec(){free();}
