@@ -49,3 +49,29 @@ void String::free(){
 
     alloc.deallocate(begin, end - begin);
 }
+
+std::ostream& operator<<(std::ostream& os, const String& s){
+    auto p_traverse = s.begin;
+
+    while (p_traverse != s.end){
+        os << *(p_traverse++);
+    }
+
+    return os;
+}
+
+bool operator==(const String& lhs, const String& rhs){
+    if (lhs.capacity() != rhs.capacity()) return false;
+
+    auto p_traverse_l = lhs.begin, p_traverse_r = rhs.begin;
+
+    while(p_traverse_l != lhs.end && p_traverse_r != rhs.end){
+        if (*p_traverse_l++ != *p_traverse_r++) return false;
+    }
+
+    return true;
+}
+
+bool operator!=(const String& lhs, const String& rhs){
+    return !(lhs == rhs);
+}
