@@ -50,6 +50,14 @@ void String::free(){
     alloc.deallocate(begin, end - begin);
 }
 
+char& String::operator[](std::size_t index){
+    return begin[index];
+}
+
+const char& String::operator[](std::size_t index) const {
+    return begin[index];
+}
+
 std::ostream& operator<<(std::ostream& os, const String& s){
     auto p_traverse = s.begin;
 

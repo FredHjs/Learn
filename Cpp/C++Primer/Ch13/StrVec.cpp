@@ -106,3 +106,11 @@ StrVec& StrVec::operator=(StrVec&& rhs){
     
     return *this;
 }
+
+std::string& StrVec::operator[](std::size_t index){
+    return elements[index];
+}
+
+const std::string& StrVec::operator[](std::size_t index) const {
+    return elements[index];
+}

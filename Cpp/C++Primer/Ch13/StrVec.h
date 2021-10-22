@@ -21,15 +21,19 @@ class StrVec{
 
         ~StrVec(){free();}
 
+        std::string& operator[](std::size_t);
+
+        const std::string& operator[](std::size_t) const;
+
         void push_back(const std::string&);
 
-        std::size_t size(){return first_free - elements;}
+        std::size_t size() const {return first_free - elements;}
 
-        std::size_t capacity(){return cap - elements;}
+        std::size_t capacity() const {return cap - elements;}
 
-        std::string* begin(){return elements;}
+        std::string* begin() const {return elements;}
 
-        std::string* end(){return first_free;}
+        std::string* end() const {return first_free;}
 
         void reserve(std::size_t);
 

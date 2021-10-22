@@ -22,6 +22,10 @@ class String{
 
         std::size_t capacity() const {return end - begin;}
 
+        char& operator[](std::size_t);
+
+        const char& operator[](std::size_t) const;
+
     private:
         static std::allocator<char> alloc;
 
