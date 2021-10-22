@@ -56,3 +56,15 @@ bool operator==(const StrBlob& lhs, const StrBlob& rhs){
 bool operator!=(const StrBlob& lhs, const StrBlob& rhs){
     return !(*lhs.data == *rhs.data);
 }
+
+bool operator<(const StrBlob& lhs, const StrBlob& rhs){
+    return *lhs.data < *rhs.data;
+}
+
+bool operator<(const StrBlobPtr& lhs, const StrBlobPtr& rhs){
+    if (lhs.wp.lock() != rhs.wp.lock()) return false;
+
+    if (lhs.curr == rhs.curr) return true;
+
+    return false;
+}

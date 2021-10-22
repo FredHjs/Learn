@@ -11,6 +11,7 @@ class StrBlob{
     friend class StrBlobPtr;
     friend bool operator==(const StrBlob&, const StrBlob&);
     friend bool operator!=(const StrBlob& lhs, const StrBlob& rhs);
+    friend bool operator<(const StrBlob& lhs, const StrBlob& rhs);
     
     public:
         StrBlob(): data(make_shared<vector<string>>()){}
@@ -52,6 +53,8 @@ class StrBlob{
 };
 
 class StrBlobPtr{
+    friend bool operator<(const StrBlobPtr&, const StrBlobPtr&);
+
     public:
         StrBlobPtr():curr(0){}
 
