@@ -79,6 +79,10 @@ class StrBlobPtr{
 
         StrBlobPtr operator--(int);
 
+        std::string& operator*() const;
+
+        std::string* operator->() const;
+
     private:
         shared_ptr<vector<string>> check(const string& msg, vector<string>::size_type index) const;
 

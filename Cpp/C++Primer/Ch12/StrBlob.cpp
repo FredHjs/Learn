@@ -95,3 +95,12 @@ StrBlobPtr StrBlobPtr::operator--(int){
     --(*this);
     return temp;
 }
+
+std::string& StrBlobPtr::operator*() const {
+    auto p = check("dereference out of range", curr);
+    return (*p)[curr];
+}
+
+std::string* StrBlobPtr::operator->() const {
+    return &(this->operator*());
+}
