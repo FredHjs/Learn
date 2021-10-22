@@ -54,6 +54,7 @@ class StrBlob{
 
 class StrBlobPtr{
     friend bool operator<(const StrBlobPtr&, const StrBlobPtr&);
+    
 
     public:
         StrBlobPtr():curr(0){}
@@ -65,6 +66,18 @@ class StrBlobPtr{
         StrBlobPtr& incr();
         
         bool operator!=(const StrBlobPtr& rhs) {return this->curr != rhs.curr;}
+
+        StrBlobPtr& operator=(const StrBlobPtr&);
+
+        //front in/decrement, returns a reference (l-value) with no parameters
+        StrBlobPtr& operator++();
+
+        StrBlobPtr& operator--();
+
+        //backin/decrement, returns a value (r-value) with an int parameter, but not only for indication
+        StrBlobPtr operator++(int);
+
+        StrBlobPtr operator--(int);
 
     private:
         shared_ptr<vector<string>> check(const string& msg, vector<string>::size_type index) const;

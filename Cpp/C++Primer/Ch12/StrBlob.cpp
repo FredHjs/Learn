@@ -49,6 +49,11 @@ StrBlobPtr StrBlob::begin() {return StrBlobPtr(*this, 0);}
 
 StrBlobPtr StrBlob::end() {auto ret = StrBlobPtr(*this, this->data->size()); return ret;}
 
+StrBlobPtr& StrBlobPtr::operator=(const StrBlobPtr& rhs){
+    wp = rhs.wp;
+    curr = rhs.curr;
+}
+
 bool operator==(const StrBlob& lhs, const StrBlob& rhs){
     return *lhs.data == *rhs.data;
 }
@@ -67,4 +72,26 @@ bool operator<(const StrBlobPtr& lhs, const StrBlobPtr& rhs){
     if (lhs.curr == rhs.curr) return true;
 
     return false;
+}
+
+StrBlobPtr& StrBlobPtr::operator++(){
+    check("increment out of range", ++curr);
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::operator--(){
+    check("decrement out of range", --curr);
+    return *this;
+}
+
+StrBlobPtr StrBlobPtr::operator++(int){
+    auto temp = *this;
+    ++(*this);
+    return temp;
+}
+
+StrBlobPtr StrBlobPtr::operator--(int){
+    auto temp = *this;
+    --(*this);
+    return temp;
 }
