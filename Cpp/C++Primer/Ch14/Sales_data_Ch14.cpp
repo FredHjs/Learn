@@ -39,3 +39,11 @@ std::istream& operator>>(std::istream& is, Sales_data& sd){
         throw std::invalid_argument("Please enter in the format of \"ISBN num_sold unit_price\"!");
     }
 }
+
+bool operator==(const Sales_data& lhs, const Sales_data& rhs){
+    return lhs.ISBN == rhs.ISBN && lhs.num_sold == rhs.num_sold && lhs.unit_price == rhs.unit_price;
+}
+
+bool operator!=(const Sales_data& lhs, const Sales_data& rhs){
+    return !(lhs == rhs);
+}
