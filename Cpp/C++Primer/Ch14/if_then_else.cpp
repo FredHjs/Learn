@@ -48,12 +48,12 @@ int main(){
     Equal equal(1);
     std::vector<int> vi{0,1,1,2,3,4,1,2,3,5,1};
     std::replace_if(vi.begin(), vi.end(), equal, 100);
-    
+
     std::cout << test(true, 1, 0) << std::endl;
     std::cout << test(false, 1, 0) << std::endl;
 
     std::cout << "enter the string to read: ";
     std::cout << read_string(std::cin) << std::endl;
 
-    std::for_each(vi.cbegin(), vi.cend(), [](int n){std::cout << n << " ";});
+    std::for_each(vi.cbegin(), vi.cend(), [](int n) -> void {std::cout << n << " ";});
 }
