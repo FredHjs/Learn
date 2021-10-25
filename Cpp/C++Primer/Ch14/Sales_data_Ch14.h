@@ -33,6 +33,9 @@ class Sales_data{
 
         inline double avg_price() const {return revenue/num_sold;}
 
+        //explicit conversion operator must be used explicitly (e.g. static_cast<std::string>(sales_data))
+        explicit operator std::string() const;
+
     private:
         std::string ISBN;
 
