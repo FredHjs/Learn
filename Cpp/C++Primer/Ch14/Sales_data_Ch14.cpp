@@ -48,6 +48,6 @@ bool operator!=(const Sales_data& lhs, const Sales_data& rhs){
     return !(lhs == rhs);
 }
 
-Sales_data::operator std::__cxx11::string() const {
+Sales_data::operator std::string() const {
     return ISBN + " " + std::to_string(num_sold) + " " + std::to_string(unit_price);
 }
