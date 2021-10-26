@@ -1,3 +1,6 @@
+#ifndef QUOTE_H
+#define QUOTE_H
+
 #include <string>
 using std::string;
 
@@ -9,7 +12,7 @@ class Quote{
 
         string isbn() const {return ISBN;}
 
-        virtual double net_price(std::size_t num_sold){return unit_price * num_sold;}
+        virtual double net_price(std::size_t num_sold) const {return unit_price * num_sold;}
 
         virtual ~Quote() = default;
 
@@ -19,3 +22,5 @@ class Quote{
     protected:
         double unit_price;
 };
+
+#endif
