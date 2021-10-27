@@ -11,6 +11,7 @@ class BulkQuote : public Quote{
         
         double net_price(std::size_t) const override;
 
+        void debug() const override {cout << isbn() << " " << unit_price << " " << min_qty << " " << discount;}
     private:
         std::size_t min_qty;
         double discount;
