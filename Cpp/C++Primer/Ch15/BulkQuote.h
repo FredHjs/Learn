@@ -23,6 +23,11 @@ double BulkQuote::net_price(std::size_t num_sold) const{
     else return unit_price * num_sold;
 }
 
-BulkQuote::BulkQuote(const BulkQuote& rhs): DiscQuote(rhs) {}
+BulkQuote::BulkQuote(const BulkQuote& rhs): DiscQuote(rhs) {std::cout << "BulkQuote copy ctor" << std::endl;}
 
+BulkQuote& BulkQuote::operator=(const BulkQuote& rhs){
+    std::cout << "BulkQuote operator=()" << std::endl;
+    this->DiscQuote::operator=(rhs);
+    return *this;
+}
 #endif

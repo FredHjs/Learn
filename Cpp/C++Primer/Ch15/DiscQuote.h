@@ -10,7 +10,9 @@ class DiscQuote : public Quote{
         DiscQuote(const std::string& s, double price, std::size_t qty, double discount) :
             Quote(s, price), min_qty(qty), discount(discount){}
 
-        DiscQuote(const DiscQuote& rhs): Quote(rhs), min_qty(rhs.min_qty), discount(rhs.discount){}
+        DiscQuote(const DiscQuote& rhs): Quote(rhs), min_qty(rhs.min_qty), discount(rhs.discount){
+            std::cout << "DiscQuote copy ctor" << std::endl;
+        }
 
         DiscQuote& operator=(const DiscQuote&);
 
@@ -23,9 +25,11 @@ class DiscQuote : public Quote{
 };
 
 DiscQuote& DiscQuote::operator=(const DiscQuote& rhs){
+    std::cout << "DiscQuote operator=()" << std::endl;
     this -> Quote::operator=(rhs);
     min_qty = rhs.min_qty;
     discount = rhs.discount;
+    return *this;
 }
 
 #endif

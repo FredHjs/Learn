@@ -12,7 +12,9 @@ class Quote{
 
         Quote(const string& s, double price): ISBN(s), unit_price(price){}
 
-        Quote(const Quote& rhs): ISBN(rhs.ISBN), unit_price(rhs.unit_price){}
+        Quote(const Quote& rhs): ISBN(rhs.ISBN), unit_price(rhs.unit_price){
+            std::cout << "Quote copy ctor" << std::endl;
+        }
 
         Quote& operator=(const Quote&);
 
@@ -32,6 +34,7 @@ class Quote{
 };
 
 Quote& Quote::operator=(const Quote& rhs){
+    std::cout << "Quote operator=()" << std::endl;
     ISBN = rhs.ISBN;
     unit_price = rhs.unit_price;
     return *this;
