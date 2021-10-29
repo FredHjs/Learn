@@ -17,7 +17,7 @@ int main(){
     std::cout << std::endl;
     delete pQ;
 
-    pQ = new LimitQuote("LimitQuote_ISBN", 100, 100, 0.5);
+    pQ = new LimitQuote("LimitQuote_ISBN", 10, 100, 100, 0.5);
     pQ->debug();
     std::cout << std::endl;
     delete pQ;
