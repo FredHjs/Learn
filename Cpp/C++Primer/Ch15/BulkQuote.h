@@ -4,10 +4,13 @@
 #include "DiscQuote.h"
 class BulkQuote : public DiscQuote{
     public:
-        BulkQuote() = default;
-
-        BulkQuote(const std::string& s, double price, std::size_t qty, double discount)
+        /*  The inherited ctor is equal to:
+            BulkQuote(const std::string& s, double price, std::size_t qty, double discount)
             : DiscQuote(s, price, qty, discount){}
+            OR
+            BulkQuote(): DiscQuote(){}
+            According to the arg list*/
+        using DiscQuote::DiscQuote;
 
         BulkQuote(const BulkQuote&);
 
