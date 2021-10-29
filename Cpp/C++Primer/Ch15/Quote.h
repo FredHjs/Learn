@@ -12,6 +12,10 @@ class Quote{
 
         Quote(const string& s, double price): ISBN(s), unit_price(price){}
 
+        Quote(const Quote& rhs): ISBN(rhs.ISBN), unit_price(rhs.unit_price){}
+
+        Quote& operator=(const Quote&);
+
         string isbn() const {return ISBN;}
 
         virtual double net_price(std::size_t num_sold) const {return unit_price * num_sold;}
@@ -26,5 +30,11 @@ class Quote{
     protected:
         double unit_price;
 };
+
+Quote& Quote::operator=(const Quote& rhs){
+    ISBN = rhs.ISBN;
+    unit_price = rhs.unit_price;
+    return *this;
+}
 
 #endif
