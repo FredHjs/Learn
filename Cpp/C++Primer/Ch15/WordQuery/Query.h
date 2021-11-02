@@ -12,9 +12,9 @@ class Query{
     friend Query operator|(const Query&, const Query&);
 
     public:
-        Query(const std::string& s): query(new WordQuery(s)){std::cout << "Query::Query()\n";}
+        Query(const std::string& s): query(new WordQuery(s)){}
         QueryResult eval(const TextQuery& tq) const {return query->eval(tq);}
-        std::string rep() const {std::cout << "Query::rep()\n";return query->rep();}
+        std::string rep() const {return query->rep();}
 
     private:
         std::shared_ptr<QueryBase> query;

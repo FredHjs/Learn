@@ -7,6 +7,7 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include "QueryResult.h"
 using namespace std;
 
@@ -31,6 +32,10 @@ TextQuery::TextQuery(ifstream& input): file(new vector<string>){
         
         string word;
         while (line_stream >> word){
+            auto last_char = word.rbegin();
+            if (!isalpha(*last_char)){
+                word.erase(last_char.base() - 1);
+            }
             auto& line_nums = word_map[word];
             if (!line_nums){
                 line_nums.reset(new set<vector<string>::size_type>);
