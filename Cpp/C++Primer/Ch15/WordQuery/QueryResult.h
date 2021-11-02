@@ -17,10 +17,17 @@ class QueryResult{
         QueryResult(shared_ptr<vector<string>> f, shared_ptr<set<vector<string>::size_type>> lines, 
             const string& word): file(f), line_nums(lines), word(word){}
             
+        set<vector<string>::size_type>::iterator begin() const {return line_nums->begin();}
+
+        set<vector<string>::size_type>::iterator end() const {return line_nums->end();}
+
+        shared_ptr<vector<string>> get_file() const {return file;}
 
     private:
         shared_ptr<vector<string>> file;
+        
         shared_ptr<set<vector<string>::size_type>> line_nums;
+
         string word;
 };
 

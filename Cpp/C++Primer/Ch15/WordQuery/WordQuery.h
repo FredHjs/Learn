@@ -12,7 +12,7 @@ class WordQuery: public QueryBase{
 
         WordQuery(const std::string& s): query_word(s){std::cout << "WordQuery::WordQuery()\n";}
 
-        //QueryResult eval(const TextQuery& tq) const override {return tq.query(query_word);}
+        QueryResult eval(const TextQuery& tq) const override {return tq.query(query_word);}
 
         std::string rep() const override {std::cout << "WordQuery::rep()\n"; return query_word;}
 };

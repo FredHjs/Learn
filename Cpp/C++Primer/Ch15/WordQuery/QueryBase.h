@@ -15,7 +15,7 @@ class QueryBase{
         virtual ~QueryBase() = default;
 
     private: 
-        //virtual QueryResult eval(const TextQuery&) const = 0;
+        virtual QueryResult eval(const TextQuery&) const = 0;
         virtual std::string rep() const = 0;
 };
 

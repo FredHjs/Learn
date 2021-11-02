@@ -13,7 +13,7 @@ class Query{
 
     public:
         Query(const std::string& s): query(new WordQuery(s)){std::cout << "Query::Query()\n";}
-        //QueryResult eval(const TextQuery& tq){return query->eval(tq);}
+        QueryResult eval(const TextQuery& tq) const {return query->eval(tq);}
         std::string rep() const {std::cout << "Query::rep()\n";return query->rep();}
 
     private:

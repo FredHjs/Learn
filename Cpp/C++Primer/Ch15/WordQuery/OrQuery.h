@@ -11,7 +11,7 @@ class OrQuery: public BinaryQuery{
     OrQuery(const Query& lhs, const Query& rhs):
         BinaryQuery(lhs, rhs, "|"){std::cout << "OrQuery::OrQuery()\n";}
 
-    //QueryResult eval(const TextQuery&) const override;
+    QueryResult eval(const TextQuery&) const override;
 };
 
 Query operator|(const Query& lhs, const Query& rhs){

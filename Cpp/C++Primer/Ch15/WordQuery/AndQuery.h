@@ -11,7 +11,7 @@ class AndQuery: public BinaryQuery{
     AndQuery(const Query& lhs, const Query& rhs):
         BinaryQuery(lhs, rhs, "&"){std::cout << "AndQuery::AndQuery()\n";}
 
-    //QueryResult eval(const TextQuery&) const override;
+    QueryResult eval(const TextQuery&) const override;
 };
 
 Query operator&(const Query& lhs, const Query& rhs){
