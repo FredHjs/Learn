@@ -1,6 +1,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include "Vec.h"
 
 template <typename T_Iter, typename T_Val>
 T_Iter find(T_Iter iter_beg,T_Iter iter_end, T_Val val){
@@ -18,4 +19,7 @@ int main(){
 
     std::cout << *find(vi.begin(), vi.end(), 7) << std::endl;
     std::cout << *find(li.begin(), li.end(), "!!!") << std::endl;
+
+    Vec<int> vec{1,2,3,4,5,6};
+    std::cout << vec[0] << std::endl;
 }
