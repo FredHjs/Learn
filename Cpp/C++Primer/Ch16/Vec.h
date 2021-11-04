@@ -107,4 +107,10 @@ template<typename T> const T& Vec<T>::operator[](std::size_t index) const {
     
     throw std::out_of_range("index beyond range");
 }
+
+template<typename T> Vec<T>::Vec(std::initializer_list<T> li){
+    auto data_pair = alloc_n_copy(li.begin(), li.end());
+    elements = data_pair.first;
+    first_free = cap = data_pair.second;
+}
 #endif
