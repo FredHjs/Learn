@@ -13,21 +13,21 @@ class Vec{
 
         Vec(std::initializer_list<T>);
 
-        //Vec(const Vec&);
+        Vec(const Vec&);
 
-        //Vec(Vec&&) noexcept;
+        Vec(Vec&&) noexcept;
 
-        //Vec& operator=(Vec&&);
+        Vec& operator=(Vec&&);
 
-       //Vec& operator=(const Vec& rhs);
+       Vec& operator=(const Vec& rhs);
 
         ~Vec(){free();}
 
-        //T& operator[](std::size_t);
+        T& operator[](std::size_t);
 
         const T& operator[](std::size_t) const;
 
-        //void push_back(const T&);
+        void push_back(const T&);
 
         std::size_t size() const {return first_free - elements;}
 
@@ -37,9 +37,9 @@ class Vec{
 
         T* end() const {return first_free;}
 
-        //void reserve(std::size_t);
+        void reserve(std::size_t);
 
-        //void resize(std::size_t, const T&);
+        void resize(std::size_t, const T&);
 
     private:
         std::allocator<T> alloc;
@@ -54,9 +54,9 @@ class Vec{
 
         void alloc_n_move(std::size_t new_cap);
 
-        //void check_cap_alloc(){if (first_free == cap) reallocate();}
+        void check_cap_alloc(){if (first_free == cap) reallocate();}
 
-        //void reallocate();
+        void reallocate();
 
         void free();
 };

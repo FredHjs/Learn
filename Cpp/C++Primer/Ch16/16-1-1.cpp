@@ -20,6 +20,9 @@ int main(){
     std::cout << *find(vi.begin(), vi.end(), 7) << std::endl;
     std::cout << *find(li.begin(), li.end(), "!!!") << std::endl;
 
-    Vec<int> vec{1,2,3,4,5,6};
+    /*although some member functions of Vec doesn't have a definition, we can still use it because only the
+    ones used will be instantiated*/
+      
+    const Vec<int> vec{1,2,3,4,5,6};
     std::cout << vec[0] << std::endl;
 }
