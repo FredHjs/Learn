@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 using std::cout;
 using std::endl;
@@ -6,16 +7,23 @@ using std::string;
 
 /* Rule for overloded template functions: the compiler tries to find the nost specific version */
 
-template <typename T> void debug_rep(const T& s){
+template <typename T> string debug_rep(const T& s){
     cout << "debug_rep(const T& s) called" << endl;
+    std::ostringstream stream;
+    stream << s;
+    return stream.str();
 }
 
-template <typename T> void debug_rep(T* s){
+template <typename T> string debug_rep(T* s){
     cout << "debug_rep(T* s) called" << endl;
+    std::ostringstream stream;
+    stream << *s;
+    return stream.str();
 }
 
-void debug_rep(string& s){
+string& debug_rep(string& s){
     cout << "debug_rep(string& s) called" << endl;
+    return s;
 }
 
 int main(){
