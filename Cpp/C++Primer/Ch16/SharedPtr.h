@@ -1,6 +1,8 @@
 #ifndef SHAREDPTR_H
 #define SHAREDPTR_H
 #include <functional>
+#include <memory>
+#include <utility>
 
 template<typename T> class SharedPtr{
     public:
@@ -63,4 +65,10 @@ template<typename T> SharedPtr<T>::SharedPtr(const SharedPtr& rhs): ptr(rhs.ptr)
             ref_count(rhs.ref_count){++*ref_count;}
 
 
+template<typename Y, typename...Args> SharedPtr<Y> MakeShared(Args&&...args){
+    std::allocator<Y> alloc;
+    auto made_ptr = alloc.allocate(1);
+    alloc.construct(made_ptr, std::forward<Args>(args)...);
+    return SharedPtr<Y>(made_ptr);
+}
 #endif

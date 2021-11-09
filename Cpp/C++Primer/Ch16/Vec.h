@@ -5,6 +5,7 @@
 #include <memory>
 #include <initializer_list>
 #include <stdexcept>
+#include <utility>
 
 template <typename T>
 class Vec{
@@ -28,6 +29,8 @@ class Vec{
         const T& operator[](std::size_t) const;
 
         void push_back(const T&);
+
+        template<typename...Args> void emplace_back(Args&&...);
 
         std::size_t size() const {return first_free - elements;}
 
@@ -112,5 +115,17 @@ template<typename T> Vec<T>::Vec(std::initializer_list<T> li){
     auto data_pair = alloc_n_copy(li.begin(), li.end());
     elements = data_pair.first;
     first_free = cap = data_pair.second;
+}
+
+template<typename T> void Vec<T>::reallocate(){
+    std::size_t new_cap = (elements && size()) ? capacity() * 2 : 1;
+    alloc_n_move(new_cap);
+}
+
+template<typename T> 
+template<typename...Args> 
+void Vec<T>::emplace_back(Args&&...args){
+    check_cap_alloc();
+    alloc.construct(first_free++, std::forward<Args>(args)...);
 }
 #endif
