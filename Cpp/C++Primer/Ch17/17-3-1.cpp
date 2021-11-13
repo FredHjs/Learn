@@ -7,7 +7,7 @@ int main(){
     string pattern = "[^c]ei";
     pattern = "[[:alpha:]]*" + pattern + "[[:alpha:]]*";
 
-    regex r(pattern);
+    regex r(pattern, regex::icase); //ignore case
     string words;
     cout << "enter some words to test: ";
     getline(cin, words);
