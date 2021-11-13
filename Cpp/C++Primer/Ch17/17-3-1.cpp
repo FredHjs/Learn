@@ -9,11 +9,11 @@ int main(){
 
     regex r(pattern);
     string words;
-    smatch result;
     cout << "enter some words to test: ";
     getline(cin, words);
-    if (regex_search(words, result, r)){
-        cout << result.str() << endl;
+    
+    /* Also useful for cregex, wstrgex and wcregex*/
+    for (sregex_iterator it(words.cbegin(), words.cend(), r), it_end; it != it_end; ++it){
+        cout << it->str() << endl;
     }
-
 }
