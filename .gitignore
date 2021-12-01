@@ -14,4 +14,4 @@ Chaojiying_Python
 *.s
 *.o
 *.asm
-/Python/batch_rename.py
+/batch_rename.py
